@@ -17,15 +17,10 @@ class _SplashPageState extends State<SplashPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            GestureDetector(
-              onTap: () {
-                context.bloc<PageBloc>().add(GoToHomePage());
-              },
-              child: Image.asset(
-                "assets/resto.png",
-                width: 200,
-                height: 100,
-              ),
+            Image.asset(
+              "assets/resto.png",
+              width: 200,
+              height: 100,
             ),
             Container(
               margin: EdgeInsets.only(top: 15),

@@ -12,7 +12,7 @@ class RestaurantDetailInitial extends RestaurantDetailState {
 class RestaurantDetailLoaded extends RestaurantDetailState {
   final List<Restaurant> restaurant;
 
-  RestaurantDetailLoaded({this.restaurant});
+  RestaurantDetailLoaded(this.restaurant);
 
   @override
   List<Object> get props => [restaurant];

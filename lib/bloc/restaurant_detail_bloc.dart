@@ -18,10 +18,10 @@ class RestaurantDetailBloc
       List<Restaurant> resto =
           await RestaurantListServices.ambilDetailResto(event.id);
 
-      yield RestaurantDetailLoaded(restaurant: resto);
+      yield RestaurantDetailLoaded(resto);
     }
   }
 
   @override
-  RestaurantDetailState get initialState => throw RestaurantDetailInitial();
+  RestaurantDetailState get initialState => throw RestaurantDetailLoaded([]);
 }

@@ -46,7 +46,7 @@ class ResturantList extends StatelessWidget {
                               onTap: () {
                                 context
                                     .bloc<PageBloc>()
-                                    .add(GoToDetailRestaurantPage(e.name));
+                                    .add(GoToDetailRestaurantPage(e.id));
                               },
                             ))
                         .toList(),
