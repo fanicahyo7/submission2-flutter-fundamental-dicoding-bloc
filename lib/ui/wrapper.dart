@@ -9,11 +9,11 @@ import 'package:submission2_flutter_fundamental_dicoding_bloc/ui/splash_screen.d
 class Wrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    prevPageEvent = GoToSplashPage();
+    prevPageEvent = GoToSplashLoadingPage();
     context.bloc<PageBloc>().add(prevPageEvent);
 
     return BlocBuilder<PageBloc, PageState>(
-      builder: (_, pageState) => (pageState is OnSplashPage)
+      builder: (_, pageState) => (pageState is OnSplashLoadingPage)
           ? SplashPage()
           : (pageState is OnDetailRestaurantPage)
               ? DetailRestaurantPage(pageState.idrestaurant)

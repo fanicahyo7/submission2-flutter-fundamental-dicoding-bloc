@@ -17,7 +17,6 @@ class RestaurantListBloc
     if (event is FetchRestaurantList) {
       List<Restaurants> restolist =
           await RestaurantListServices.ambilRestoList();
-          print(event);
       yield RestaurantListLoaded(restolist: restolist);
     }
   }

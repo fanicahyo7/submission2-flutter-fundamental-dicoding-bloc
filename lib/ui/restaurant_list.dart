@@ -13,35 +13,43 @@ class ResturantList extends StatelessWidget {
       child: ListView(
         children: [
           Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
-                margin: EdgeInsets.only(left: 16, top: 16),
-                child: Text(
-                  'Restaurant',
-                  style: font1.copyWith(fontSize: 30),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Container(
+                  margin: EdgeInsets.only(left: 16, top: 16),
+                  child: Text(
+                    'Restaurant',
+                    style: font1.copyWith(fontSize: 30),
+                  ),
                 ),
               ),
-              Container(
-                  margin: EdgeInsets.only(left: 16, bottom: 6),
-                  child: Text(
-                    'Recommendation restaurant for you!',
-                    style: font2.copyWith(fontSize: 14),
-                  )),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Container(
+                    margin: EdgeInsets.only(left: 16, bottom: 6),
+                    child: Text(
+                      'Recommendation restaurant for you!',
+                      style: font2.copyWith(fontSize: 14),
+                    )),
+              ),
               BlocBuilder<RestaurantListBloc, RestaurantListState>(
                   builder: (_, restoListState) {
                 if (restoListState is RestaurantListLoaded) {
                   List<Restaurants> restoList = restoListState.restolist;
                   return Column(
-                    children:
-                        restoList.map((e) => CardResto(
-                          e, 
-                          restoList, 
-                          onTap: () {
-                          context
-                            .bloc<PageBloc>()
-                            .add(GoToDetailRestaurantPage(e.name));
-                        },)).toList(),
+                    children: restoList
+                        .map((e) => CardResto(
+                              e,
+                              restoList,
+                              onTap: () {
+                                context
+                                    .bloc<PageBloc>()
+                                    .add(GoToDetailRestaurantPage(e.name));
+                              },
+                            ))
+                        .toList(),
                   );
                 } else {
                   return CircularProgressIndicator();

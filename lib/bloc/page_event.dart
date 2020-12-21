@@ -4,7 +4,12 @@ abstract class PageEvent extends Equatable {
   const PageEvent();
 }
 
-class GoToSplashPage extends PageEvent {
+class GoToSplashLoadingPage extends PageEvent {
+  @override
+  List<Object> get props => [];
+}
+
+class GoToSplashLoadedPage extends PageEvent {
   @override
   List<Object> get props => [];
 }

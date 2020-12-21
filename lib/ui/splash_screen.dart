@@ -28,28 +28,12 @@ class _SplashPageState extends State<SplashPage> {
               ),
             ),
             Container(
-              margin: EdgeInsets.only(top: 25),
+              margin: EdgeInsets.only(top: 15),
               child: Text(
-                "Selamat Datang di Restaurant",
+                "Fani Restaurant",
                 style: font1.copyWith(fontSize: 20),
               ),
             ),
-            Container(
-              height: 40,
-              width: 250,
-              margin: EdgeInsets.only(top: 50),
-              color: Colors.amber[100],
-              child: RaisedButton(
-                color: Colors.black,
-                onPressed: () {
-                  context.bloc<PageBloc>().add(GoToHomePage());
-                },
-                child: Text(
-                  'Masuk',
-                  style: font2.copyWith(color: Colors.white),
-                ),
-              ),
-            )
           ],
         ),
       ),

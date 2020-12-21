@@ -14,13 +14,13 @@ class PageBloc extends Bloc<PageEvent, PageState> {
   Stream<PageState> mapEventToState(
     PageEvent event,
   ) async* {
-    if (event is GoToSplashPage) {
-      yield OnSplashPage();
+    if (event is GoToSplashLoadingPage) {
+      yield OnSplashLoadingPage();
+      await Future.delayed(Duration(seconds: 2));
+      yield OnHomePage(bottomNavBarIndex: 0);
     } else if (event is GoToHomePage) {
-      print(event.toString());
       yield OnHomePage(bottomNavBarIndex: event.bottomNavBarIndex);
     } else if (event is GoToDetailRestaurantPage) {
-      print(event.toString());
       yield OnDetailRestaurantPage(event.idrestaurant);
     }
   }

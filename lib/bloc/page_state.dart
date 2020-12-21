@@ -9,7 +9,12 @@ class PageInitial extends PageState {
   List<Object> get props => [];
 }
 
-class OnSplashPage extends PageState {
+class OnSplashLoadingPage extends PageState {
+  @override
+  List<Object> get props => [];
+}
+
+class OnSplashLoadedPage extends PageState {
   @override
   List<Object> get props => [];
 }

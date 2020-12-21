@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:submission2_flutter_fundamental_dicoding_bloc/bloc/restaurant_detail_bloc.dart';
+import 'package:submission2_flutter_fundamental_dicoding_bloc/models/restaurant_detail.dart';
 
 class DetailRestaurantPage extends StatefulWidget {
   final String idrestaurant;
@@ -20,9 +23,28 @@ class _DetailRestaurantPageState extends State<DetailRestaurantPage> {
           child: Container(
         color: Colors.white,
       )),
-      Column(
-        children: [Text(widget.idrestaurant)],
-      )
+      SafeArea(child: SingleChildScrollView(child:
+          BlocBuilder<RestaurantDetailBloc, RestaurantDetailState>(
+              builder: (_, detailList) {
+        if (detailList is RestaurantDetailLoaded) {
+          List<Restaurant> restoDetail = detailList.restaurant.take(1);
+          return Stack(children: [
+            Hero(
+                  tag: restoDetail,
+                  child: Container(
+                    width: double.infinity,
+                    height: 300,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: NetworkImage(restoDetail.toString()),
+                            fit: BoxFit.cover)),
+                  ),
+                ),
+          ],);
+        } else {
+          return CircularProgressIndicator();
+        }
+      })))
     ]));
   }
 }
