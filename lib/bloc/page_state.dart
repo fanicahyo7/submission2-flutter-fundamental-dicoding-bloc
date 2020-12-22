@@ -35,3 +35,12 @@ class OnDetailRestaurantPage extends PageState {
   @override
   List<Object> get props => [idrestaurant];
 }
+
+class OnSearchRestaurantPage extends PageState {
+  final String parameter;
+
+  OnSearchRestaurantPage({this.parameter});
+
+  @override
+  List<Object> get props => [parameter];
+}

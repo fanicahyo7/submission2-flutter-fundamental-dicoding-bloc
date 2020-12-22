@@ -21,6 +21,8 @@ PageBloc() : super(PageInitial());
       yield OnHomePage(bottomNavBarIndex: event.bottomNavBarIndex);
     } else if (event is GoToDetailRestaurantPage) {
       yield OnDetailRestaurantPage(event.idrestaurant);
+    } else if (event is GoToSearchRestaurantPage) {
+      yield OnSearchRestaurantPage(parameter: event.parameter);
     }
   }
 }

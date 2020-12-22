@@ -16,7 +16,6 @@ class RestaurantDetailBloc
   Stream<RestaurantDetailState> mapEventToState(
     RestaurantDetailEvent event,
   ) async* {
-    print(event.toString());
     if (event is FetchDetailRestaurant) {
       var resto = await RestaurantDetailServices.ambilDetailResto(event.id);
 

@@ -8,7 +8,6 @@ class RestaurantDetailServices {
   static Future<Restaurant> ambilDetailResto(String id) async {
     String url = baseURL + 'detail/' + id;
     var response = await http.get(url);
-print(url);
     if (response.statusCode == 200) {
       var data = json.decode(response.body);
       var result = data['restaurant'];

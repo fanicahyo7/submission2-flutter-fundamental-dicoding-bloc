@@ -31,3 +31,12 @@ class GoToDetailRestaurantPage extends PageEvent {
   @override
   List<Object> get props => [idrestaurant];
 }
+
+class GoToSearchRestaurantPage extends PageEvent {
+  final String parameter;
+
+  GoToSearchRestaurantPage({this.parameter});
+
+  @override
+  List<Object> get props => [parameter];
+}

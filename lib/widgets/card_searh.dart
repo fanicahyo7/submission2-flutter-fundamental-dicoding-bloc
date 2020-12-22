@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:submission2_flutter_fundamental_dicoding_bloc/common/shared_value.dart';
 import 'package:submission2_flutter_fundamental_dicoding_bloc/common/style.dart';
-import 'package:submission2_flutter_fundamental_dicoding_bloc/models/restaurant_list.dart';
+import 'package:submission2_flutter_fundamental_dicoding_bloc/models/restaurant_search.dart';
 
-class CardResto extends StatelessWidget {
-  final Restaurants restaurant;
-  final List<Restaurants> resto;
+class CardRestoSearch extends StatelessWidget {
+  final Restaurantss restaurant;
+  final List<Restaurantss> resto;
   final Function onTap;
 
-  const CardResto(this.restaurant, this.resto, {this.onTap});
+  const CardRestoSearch(this.restaurant, this.resto, {this.onTap});
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

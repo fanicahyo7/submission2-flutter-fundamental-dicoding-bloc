@@ -4,6 +4,7 @@ import 'package:submission2_flutter_fundamental_dicoding_bloc/bloc/page_bloc.dar
 import 'package:submission2_flutter_fundamental_dicoding_bloc/common/shared_value.dart';
 import 'package:submission2_flutter_fundamental_dicoding_bloc/ui/home_page.dart';
 import 'package:submission2_flutter_fundamental_dicoding_bloc/ui/restaurant_detail.dart';
+import 'package:submission2_flutter_fundamental_dicoding_bloc/ui/search_page.dart';
 import 'package:submission2_flutter_fundamental_dicoding_bloc/ui/splash_screen.dart';
 
 class Wrapper extends StatelessWidget {
@@ -17,9 +18,11 @@ class Wrapper extends StatelessWidget {
           ? SplashPage()
           : (pageState is OnDetailRestaurantPage)
               ? DetailRestaurantPage(pageState.idrestaurant)
-              : (pageState is OnHomePage)
-                  ? HomePage()
-                  : CircularProgressIndicator(),
+              : (pageState is OnSearchRestaurantPage)
+                  ? SearchPage()
+                  : (pageState is OnHomePage)
+                      ? HomePage()
+                      : CircularProgressIndicator(),
     );
   }
 }

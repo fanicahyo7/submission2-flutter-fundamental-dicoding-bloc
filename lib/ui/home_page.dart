@@ -41,7 +41,10 @@ class _HomePageState extends State<HomePage> {
                 bottomNavBarIndex = index;
               });
             },
-            children: <Widget>[ResturantList(), SearchPage()],
+            children: <Widget>[
+              ResturantList(), 
+              SearchPage()
+              ],
           ),
           createCustomBottomNavBar(),
         ],
