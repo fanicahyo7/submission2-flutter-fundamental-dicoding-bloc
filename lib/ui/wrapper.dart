@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:submission2_flutter_fundamental_dicoding_bloc/bloc/page_bloc.dart';
 import 'package:submission2_flutter_fundamental_dicoding_bloc/common/shared_value.dart';
+import 'package:submission2_flutter_fundamental_dicoding_bloc/ui/hasil_cari.dart';
 import 'package:submission2_flutter_fundamental_dicoding_bloc/ui/home_page.dart';
 import 'package:submission2_flutter_fundamental_dicoding_bloc/ui/restaurant_detail.dart';
-import 'package:submission2_flutter_fundamental_dicoding_bloc/ui/search_page.dart';
 import 'package:submission2_flutter_fundamental_dicoding_bloc/ui/splash_screen.dart';
 
 class Wrapper extends StatelessWidget {
@@ -19,7 +19,9 @@ class Wrapper extends StatelessWidget {
           : (pageState is OnDetailRestaurantPage)
               ? DetailRestaurantPage(pageState.idrestaurant)
               : (pageState is OnSearchRestaurantPage)
-                  ? SearchPage()
+                  ? HasilCariPage(
+                      parameter: pageState.parameter,
+                    )
                   : (pageState is OnHomePage)
                       ? HomePage()
                       : CircularProgressIndicator(),

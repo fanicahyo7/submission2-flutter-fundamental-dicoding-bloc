@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:submission2_flutter_fundamental_dicoding_bloc/ui/restaurant_list.dart';
-import 'package:submission2_flutter_fundamental_dicoding_bloc/ui/search_page.dart';
 
 class HomePage extends StatefulWidget {
   final int bottomNavBarIndex;
@@ -34,60 +33,9 @@ class _HomePageState extends State<HomePage> {
               child: Container(
             color: Colors.grey[100],
           )),
-          PageView(
-            controller: pageController,
-            onPageChanged: (index) {
-              setState(() {
-                bottomNavBarIndex = index;
-              });
-            },
-            children: <Widget>[
-              ResturantList(), 
-              SearchPage()
-              ],
-          ),
-          createCustomBottomNavBar(),
+          ResturantList(),
         ],
       ),
     );
   }
-
-  Widget createCustomBottomNavBar() => Align(
-        alignment: Alignment.bottomCenter,
-        child: Container(
-          height: 70,
-          decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20), topRight: Radius.circular(20))),
-          child: BottomNavigationBar(
-              elevation: 0,
-              backgroundColor: Colors.transparent,
-              selectedItemColor: Colors.amber,
-              unselectedItemColor: Color(0xFFE5E5E5),
-              currentIndex: bottomNavBarIndex,
-              onTap: (index) {
-                setState(() {
-                  bottomNavBarIndex = index;
-                  pageController.jumpToPage(index);
-                });
-              },
-              items: [
-                BottomNavigationBarItem(
-                    label: "Home",
-                    icon: Container(
-                      margin: EdgeInsets.only(bottom: 6),
-                      height: 20,
-                      child: Icon(Icons.home),
-                    )),
-                BottomNavigationBarItem(
-                    label: "Search",
-                    icon: Container(
-                      margin: EdgeInsets.only(bottom: 6),
-                      height: 20,
-                      child: Icon(Icons.search),
-                    )),
-              ]),
-        ),
-      );
 }
