@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:submission2_flutter_fundamental_dicoding_bloc/bloc/page_bloc.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:submission2_flutter_fundamental_dicoding_bloc/common/style.dart';
 
 class SplashPage extends StatefulWidget {

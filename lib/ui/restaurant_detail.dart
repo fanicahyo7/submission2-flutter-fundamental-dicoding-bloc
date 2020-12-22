@@ -16,27 +16,23 @@ class _DetailRestaurantPageState extends State<DetailRestaurantPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: 
-      BlocProvider(
+      body: BlocProvider(
         create: (_) => RestaurantDetailBloc()
           ..add(FetchDetailRestaurant(widget.idrestaurant)),
         child: BlocBuilder<RestaurantDetailBloc, RestaurantDetailState>(
             builder: (_, detailList) {
+              print(widget.idrestaurant);
           if (detailList is RestaurantDetailLoaded) {
-            // print(detailList.toString());
-            // List<Restaurant> restoDetail = detailList.restaurant.sublist(0, 1);
-
-            // return ListView.builder(
-            //   scrollDirection: Axis.horizontal,
-            //   itemCount: restoDetail.length,
-            //   itemBuilder: (context, index) => Container(
-            //     height: 100,
-            //     child: Text(restoDetail[index].name),
-            //   ),
-            // );
-
-            return Container(
-              child: Text('Halo'),
+            return Column(
+              children: [
+                Text(detailList.restaurant.name),
+                Text(detailList.restaurant.description),
+                Column(
+                  children: detailList.restaurant.menus.drinks
+                      .map((e) => Text(e.name))
+                      .toList(),
+                )
+              ],
             );
           } else {
             return CircularProgressIndicator();

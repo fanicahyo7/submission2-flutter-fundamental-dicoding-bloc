@@ -10,7 +10,7 @@ class RestaurantDetailInitial extends RestaurantDetailState {
 }
 
 class RestaurantDetailLoaded extends RestaurantDetailState {
-  final List<Restaurant> restaurant;
+  final Restaurant restaurant;
 
   RestaurantDetailLoaded(this.restaurant);
 

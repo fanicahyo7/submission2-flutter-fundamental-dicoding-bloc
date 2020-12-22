@@ -10,6 +10,7 @@ part 'restaurant_list_state.dart';
 
 class RestaurantListBloc
     extends Bloc<RestaurantListEvent, RestaurantListState> {
+  RestaurantListBloc() : super(RestaurantListInitial());
   @override
   Stream<RestaurantListState> mapEventToState(
     RestaurantListEvent event,
@@ -20,7 +21,4 @@ class RestaurantListBloc
       yield RestaurantListLoaded(restolist: restolist);
     }
   }
-
-  @override
-  RestaurantListState get initialState => RestaurantListInitial();
 }
