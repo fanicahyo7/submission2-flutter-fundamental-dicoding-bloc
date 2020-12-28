@@ -1,4 +1,6 @@
-class RestaurantList {
+import 'package:equatable/equatable.dart';
+
+class RestaurantList extends Equatable {
   RestaurantList({
     this.error,
     this.message,
@@ -6,10 +8,10 @@ class RestaurantList {
     this.restaurants,
   });
 
-  bool error;
-  String message;
-  int count;
-  List<Restaurants> restaurants;
+  final bool error;
+  final String message;
+  final int count;
+  final List<Restaurants> restaurants;
 
   factory RestaurantList.fromJson(Map<String, dynamic> json) => RestaurantList(
         error: json["error"],
@@ -18,9 +20,20 @@ class RestaurantList {
         restaurants: List<Restaurants>.from(
             json["restaurants"].map((x) => Restaurants.fromJson(x))),
       );
+
+  factory RestaurantList.fromJsonNo() =>
+      RestaurantList(
+        error: true,
+        message: "Tidak Ada Internet\nPeriksalah Koneksi Anda!",
+        count: 0,
+        restaurants: [],
+      );
+
+  @override
+  List<Object> get props => [restaurants, message, error];
 }
 
-class Restaurants {
+class Restaurants extends Equatable {
   Restaurants({
     this.id,
     this.name,
@@ -30,12 +43,12 @@ class Restaurants {
     this.rating,
   });
 
-  String id;
-  String name;
-  String description;
-  String pictureId;
-  String city;
-  double rating;
+  final String id;
+  final String name;
+  final String description;
+  final String pictureId;
+  final String city;
+  final double rating;
 
   factory Restaurants.fromJson(Map<String, dynamic> json) => Restaurants(
         id: json["id"],
@@ -45,4 +58,14 @@ class Restaurants {
         city: json["city"],
         rating: json["rating"].toDouble(),
       );
+
+  @override
+  List<Object> get props => [
+        id,
+        name,
+        description,
+        pictureId,
+        city,
+        rating,
+      ];
 }

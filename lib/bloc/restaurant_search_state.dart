@@ -22,3 +22,12 @@ class RestaurantSearchLoaded extends RestaurantSearchState {
   @override
   List<Object> get props => [restaurant];
 }
+
+class RestaurantSearchFailed extends RestaurantSearchState {
+  final String message;
+
+  RestaurantSearchFailed({this.message});
+
+  @override
+  List<Object> get props => [message];
+}

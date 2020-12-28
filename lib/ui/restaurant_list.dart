@@ -5,6 +5,7 @@ import 'package:submission2_flutter_fundamental_dicoding_bloc/bloc/restaurant_li
 import 'package:submission2_flutter_fundamental_dicoding_bloc/common/style.dart';
 import 'package:submission2_flutter_fundamental_dicoding_bloc/models/restaurant_list.dart';
 import 'package:submission2_flutter_fundamental_dicoding_bloc/widgets/card_resto.dart';
+import 'package:submission2_flutter_fundamental_dicoding_bloc/widgets/no_internet.dart';
 
 class ResturantList extends StatefulWidget {
   @override
@@ -66,21 +67,38 @@ class _ResturantListState extends State<ResturantList> {
                   builder: (_, restoListState) {
                 if (restoListState is RestaurantListLoaded) {
                   List<Restaurants> restoList = restoListState.restolist;
-                  return Column(
-                    children: restoList
-                        .map((e) => CardResto(
-                              e,
-                              restoList,
-                              onTap: () {
-                                context
-                                    .read<PageBloc>()
-                                    .add(GoToDetailRestaurantPage(e.id));
-                              },
-                            ))
-                        .toList(),
+                  if (restoList.isEmpty) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [Text('Data Restaurant Tidak Ada')],
+                    );
+                  } else {
+                    return Column(
+                      children: restoList
+                          .map((e) => CardResto(
+                                e,
+                                restoList,
+                                onTap: () {
+                                  context
+                                      .read<PageBloc>()
+                                      .add(GoToDetailRestaurantPage(e.id));
+                                },
+                              ))
+                          .toList(),
+                    );
+                  }
+                } else if (restoListState is RestaurantListError) {
+                  return NoInternetPage(
+                    pesan: restoListState.message,
                   );
                 } else {
-                  return CircularProgressIndicator();
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      CircularProgressIndicator(),
+                      Text('Memuat Data')
+                    ],
+                  );
                 }
               }),
               SizedBox(

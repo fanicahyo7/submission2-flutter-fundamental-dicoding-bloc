@@ -7,7 +7,7 @@ abstract class RestaurantSearchEvent extends Equatable {
 class SearchRestauranton extends RestaurantSearchEvent {
   final String parameter;
 
-  SearchRestauranton(this.parameter);
+  SearchRestauranton({this.parameter});
 
   @override
   List<Object> get props => [];

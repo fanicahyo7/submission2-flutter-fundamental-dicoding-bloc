@@ -9,7 +9,12 @@ class RestaurantListInitial extends RestaurantListState {
   List<Object> get props => [];
 }
 
-class RestaurantListLoaded extends RestaurantListState{
+class RestaurantListLoading extends RestaurantListState {
+  @override
+  List<Object> get props => [];
+}
+
+class RestaurantListLoaded extends RestaurantListState {
   final List<Restaurants> restolist;
 
   RestaurantListLoaded({this.restolist});
@@ -18,4 +23,11 @@ class RestaurantListLoaded extends RestaurantListState{
   List<Object> get props => [restolist];
 }
 
+class RestaurantListError extends RestaurantListState {
+  final String message;
 
+  RestaurantListError({this.message});
+
+  @override
+  List<Object> get props => [message];
+}

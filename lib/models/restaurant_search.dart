@@ -1,21 +1,33 @@
-class RestaurantSearch {
+import 'package:equatable/equatable.dart';
+
+class RestaurantSearch extends Equatable {
   RestaurantSearch({
     this.error,
-    this.founded,
+    this.message,
     this.restaurants,
   });
 
-  bool error;
-  int founded;
-  List<Restaurantss> restaurants;
+  final bool error;
+  final String message;
+  final List<Restaurantss> restaurants;
 
   factory RestaurantSearch.fromJson(Map<String, dynamic> json) =>
       RestaurantSearch(
         error: json["error"],
-        founded: json["founded"],
+        message: json["message"] ?? "Data Gagal",
         restaurants: List<Restaurantss>.from(
             json["restaurants"].map((x) => Restaurantss.fromJson(x))),
       );
+
+  factory RestaurantSearch.fromJsonNo() =>
+      RestaurantSearch(
+        error: true,
+        message: "Tidak Ada Internet\nPeriksalah Koneksi Anda!",
+        restaurants: [],
+      );
+
+  @override
+  List<Object> get props => [restaurants, message, error];
 }
 
 class Restaurantss {
@@ -28,12 +40,12 @@ class Restaurantss {
     this.rating,
   });
 
-  String id;
-  String name;
-  String description;
-  String pictureId;
-  String city;
-  double rating;
+  final String id;
+  final String name;
+  final String description;
+  final String pictureId;
+  final String city;
+  final double rating;
 
   factory Restaurantss.fromJson(Map<String, dynamic> json) => Restaurantss(
         id: json["id"],

@@ -17,10 +17,14 @@ class RestaurantSearchBloc
     RestaurantSearchEvent event,
   ) async* {
     if (event is SearchRestauranton) {
-      List<Restaurantss> resto =
+      yield SearchRestaurantLoadingState();
+      var resto =
           await RestaurantSearchServices.ambilSearchResto(event.parameter);
-
-      yield RestaurantSearchLoaded(restaurant: resto);
+      if (resto.error != true) {
+        yield RestaurantSearchLoaded(restaurant: resto.restaurants);
+      } else {
+        yield RestaurantSearchFailed(message: resto.message);
+      }
     }
   }
 }

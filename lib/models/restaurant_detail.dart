@@ -1,13 +1,15 @@
-class RestaurantDetail {
+import 'package:equatable/equatable.dart';
+
+class RestaurantDetail extends Equatable {
   RestaurantDetail({
     this.error,
     this.message,
     this.restaurant,
   });
 
-  bool error;
-  String message;
-  Restaurant restaurant;
+  final bool error;
+  final String message;
+  final Restaurant restaurant;
 
   factory RestaurantDetail.fromJson(Map<String, dynamic> json) =>
       RestaurantDetail(
@@ -15,9 +17,18 @@ class RestaurantDetail {
         message: json["message"],
         restaurant: Restaurant.fromJson(json["restaurant"]),
       );
+  factory RestaurantDetail.fromJsonNo() =>
+      RestaurantDetail(
+        error: true,
+        message: "Tidak Ada Internet\nPeriksalah Koneksi Anda!",
+        restaurant: null,
+      );
+
+  @override
+  List<Object> get props => [error, message, restaurant];
 }
 
-class Restaurant {
+class Restaurant extends Equatable {
   Restaurant({
     this.id,
     this.name,
@@ -31,16 +42,16 @@ class Restaurant {
     this.customerReviews,
   });
 
-  String id;
-  String name;
-  String description;
-  String city;
-  String address;
-  String pictureId;
-  List<Category> categories;
-  Menus menus;
-  double rating;
-  List<CustomerReview> customerReviews;
+  final String id;
+  final String name;
+  final String description;
+  final String city;
+  final String address;
+  final String pictureId;
+  final List<Category> categories;
+  final Menus menus;
+  final double rating;
+  final List<CustomerReview> customerReviews;
 
   factory Restaurant.fromJson(Map<String, dynamic> json) => Restaurant(
         id: json["id"],
@@ -56,6 +67,20 @@ class Restaurant {
         customerReviews: List<CustomerReview>.from(
             json["customerReviews"].map((x) => CustomerReview.fromJson(x))),
       );
+
+  @override
+  List<Object> get props => [
+        id,
+        name,
+        description,
+        city,
+        address,
+        pictureId,
+        categories,
+        menus,
+        rating,
+        customerReviews
+      ];
 }
 
 class Category {

@@ -17,9 +17,13 @@ class RestaurantDetailBloc
     RestaurantDetailEvent event,
   ) async* {
     if (event is FetchDetailRestaurant) {
+      yield RestaurantDetailLoading();
       var resto = await RestaurantDetailServices.ambilDetailResto(event.id);
-
-      yield RestaurantDetailLoaded(resto);
+      if (resto.error != true) {
+        yield RestaurantDetailLoaded(resto.restaurant);
+      } else {
+        yield RestaurantDetailFailed(message: resto.message);
+      }
     }
   }
 }

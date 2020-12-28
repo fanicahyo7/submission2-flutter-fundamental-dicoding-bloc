@@ -4,6 +4,7 @@ import 'package:submission2_flutter_fundamental_dicoding_bloc/bloc/page_bloc.dar
 import 'package:submission2_flutter_fundamental_dicoding_bloc/bloc/restaurant_detail_bloc.dart';
 import 'package:submission2_flutter_fundamental_dicoding_bloc/common/shared_value.dart';
 import 'package:submission2_flutter_fundamental_dicoding_bloc/common/style.dart';
+import 'package:submission2_flutter_fundamental_dicoding_bloc/widgets/no_internet.dart';
 
 class DetailRestaurantPage extends StatefulWidget {
   final String idrestaurant;
@@ -18,7 +19,7 @@ class _DetailRestaurantPageState extends State<DetailRestaurantPage> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        context.bloc<PageBloc>().add(GoToHomePage());
+        context.read<PageBloc>().add(GoToHomePage());
         return;
       },
       child: Scaffold(
@@ -67,7 +68,7 @@ class _DetailRestaurantPageState extends State<DetailRestaurantPage> {
                                   child: GestureDetector(
                                     onTap: () {
                                       context
-                                          .bloc<PageBloc>()
+                                          .read<PageBloc>()
                                           .add(GoToHomePage());
                                     },
                                     child: Container(
@@ -291,8 +292,20 @@ class _DetailRestaurantPageState extends State<DetailRestaurantPage> {
                           )
                         ],
                       );
+                    } else if (detailList is RestaurantDetailFailed) {
+                      return NoInternetPage(
+                        pesan: detailList.message,
+                      );
                     } else {
-                      return Center(child: CircularProgressIndicator());
+                      return Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            CircularProgressIndicator(),
+                            Text('Memuat Data')
+                          ],
+                        ),
+                      );
                     }
                   }),
                 ),

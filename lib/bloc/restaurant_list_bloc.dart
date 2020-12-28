@@ -16,9 +16,13 @@ class RestaurantListBloc
     RestaurantListEvent event,
   ) async* {
     if (event is FetchRestaurantList) {
-      List<Restaurants> restolist =
-          await RestaurantListServices.ambilRestoList();
-      yield RestaurantListLoaded(restolist: restolist);
+      yield RestaurantListLoading();
+      var restolist = await RestaurantListServices.ambilRestoList();
+      if (restolist.error != true) {
+        yield RestaurantListLoaded(restolist: restolist.restaurants);
+      } else {
+        yield RestaurantListError(message: restolist.message);
+      }
     }
   }
 }
